@@ -31,6 +31,7 @@
 ### Required Libraries
 
 Install dependencies using pip:
+pip install transformers streamlit torch
 
 ---
 
@@ -40,6 +41,7 @@ Install dependencies using pip:
 
 1. **Save the code as `app.py`** (see [Code Example](#code-example) below).
 2. **Run the app:**
+    streamlit run app.py
 3. **Open the provided local URL** in your browser to use the app.
 
 ### Jupyter Notebook
@@ -49,6 +51,21 @@ If you prefer Jupyter, you can use the core logic in a notebook cell without the
 ---
 
 ## Code Example
+from transformers import pipeline, set_seed
+Load the GPT-2 text generation pipeline
+
+generator = pipeline('text-generation', model='gpt2')
+set_seed(42)
+Example input
+
+input_text = "I helped organize files in the office."
+Prepare the prompt
+
+prompt = f"Rewrite the following as a professional resume bullet: {input_text}"
+Generate the bullet point
+
+output = generator(prompt, max_length=40, num_return_sequences=1)
+print(output['generated_text'])
 
 
 ---
@@ -73,42 +90,9 @@ If you prefer Jupyter, you can use the core logic in a notebook cell without the
 
 ---
 
-## Project Structure
-
-
----
-
 ## Future Improvements
 
 - Fine-tune the AI model on a dataset of resume bullets for improved relevance.
 - Add industry/job role selection for tailored outputs.
 - Implement a feedback system for continuous improvement.
 - Support for multiple languages.
-
----
-
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests for improvements or new features.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Author
-
-- [Your Name](https://github.com/yourusername)
-
----
-
-## GitHub Repository
-
-[🔗 View on GitHub](https://github.com/yourusername/resume-bullet-generator)
-
----
-
-*Feel free to customize this README with your name, screenshots, and actual GitHub link as needed!*
