@@ -54,17 +54,17 @@ If you prefer Jupyter, you can use the core logic in a notebook cell without the
 
 from transformers import pipeline, set_seed
 
-# Load the GPT-2 text generation pipeline
+#### Load the GPT-2 text generation pipeline
 generator = pipeline('text-generation', model='gpt2')
 set_seed(42)
 
-# Example input
+#### Example input
 input_text = "I helped organize files in the office."
 
-# Prepare the prompt
+#### Prepare the prompt
 prompt = f"Rewrite the following as a professional resume bullet: {input_text}"
 
-# Generate the bullet point
+#### Generate the bullet point
 output = generator(prompt, max_length=40, num_return_sequences=1)
 print(output['generated_text'])
 
